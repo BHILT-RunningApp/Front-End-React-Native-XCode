@@ -16,7 +16,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {getRoute} from '../api/api';
+import {getRoute, getPollutionData} from '../api/api';
+import PollutionPointCard from './pp-card';
 
 import MapboxGL from '@react-native-mapbox-gl/maps';
 
@@ -51,6 +52,15 @@ const mapStyle = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 15,
   },
+  annotationContainerPollution: {
+    width: 60,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    borderRadius: 15,
+  },
+
   annotationFill: {
     width: 30,
     height: 30,
@@ -71,6 +81,32 @@ class Map extends Component {
     zoom: 12,
     startCoordinates: [53.457915, -2.226825],
     endCoordinates: [53.487144, -2.248454],
+    pollutionData: [
+      {
+        pp_coordinates: {
+          lat: 53.481471,
+          long: -2.242734,
+        },
+        am: {
+          pollutants: {
+            no2: 86.44,
+            pm10: 43.33,
+            so2: 0.44,
+            o3: 2.59,
+            pm25: 25.3,
+          },
+          top_corner: {
+            lat: 53.458971,
+            long: -2.250234,
+          },
+          bottom_corner: {
+            lat: 53.503971,
+            long: -2.235234,
+          },
+          aqi: 3,
+        },
+      },
+    ],
     //NOT REQUIRED CURRENTLY
     directions: [],
     rectangle: [
@@ -86,24 +122,55 @@ class Map extends Component {
   };
 
   fetchRoute = (startCoordinates, endCoordinates, avoidAreas) => {
-    // console.log('in fetch route');
     getRoute(startCoordinates, endCoordinates, avoidAreas).then(({data}) => {
-      // console.log(data.response.route[0].leg[0]);
       const markerArr = [];
       data.response.route[0].leg[0].maneuver.forEach(point => {
         markerArr.push([point.position.longitude, point.position.latitude]);
       });
-      // console.log(markerArr);
       this.setState({markers: markerArr});
+    });
+  };
+
+  fetchPollutionData = () => {
+    getPollutionData().then(({data: {pollutionPoints}}) => {
+      this.setState({pollutionData: pollutionPoints});
+    });
+  };
+
+  showPollutionData = () => {
+    const TOD = 'am';
+    return this.state.pollutionData.map((point, index) => {
+      console.log(point);
+      return (
+        <MapboxGL.PointAnnotation
+          key={index}
+          id={String(index)}
+          coordinate={[point.pp_coordinates.long, point.pp_coordinates.lat]}
+          title={''}>
+          <View style={mapStyle.annotationContainerPollution}>
+            {/* <View style={mapStyle.annotationFill} /> */}
+          </View>
+          <MapboxGL.Callout
+            title={`Name: ${point.name}\n\nCurrent AQI: ${point[TOD].aqi}\nNitrogen Dioxide: ${point[TOD].pollutants.no2}\nPM10: ${point[TOD].pollutants.pm10}\nSulphur Dioxide: ${point[TOD].pollutants.so2}\nOzone: ${point[TOD].pollutants.o3}\nPM2.5: ${point[TOD].pollutants.pm25}`}
+            // style={mapStyle.annotationFill}
+          />
+        </MapboxGL.PointAnnotation>
+      );
     });
   };
 
   componentDidMount() {
     MapboxGL.setTelemetryEnabled(false);
     this.fetchRoute(this.state.startCoordinates, this.state.endCoordinates);
+    this.fetchPollutionData();
   }
 
+  //   render() {
+  //     return <PollutionPointCard />;
+  //   }
+
   render() {
+    console.log('PP => ', this.state.pollutionData);
     return (
       <View style={styles.page}>
         <View style={styles.container}>
@@ -124,7 +191,7 @@ class Map extends Component {
                   key={index}
                   id={String(index)}
                   coordinate={[marker[0], marker[1]]}
-                  title={'no me toques los huevos'}>
+                  title={''}>
                   <View style={mapStyle.annotationContainer}>
                     <View style={mapStyle.annotationFill} />
                   </View>
@@ -135,6 +202,7 @@ class Map extends Component {
                 </MapboxGL.PointAnnotation>
               );
             })}
+            {this.showPollutionData()}
             <MapboxGL.ShapeSource
               id="earthquakes"
               url="https://project-bhilt.appspot.com/api/pollution-points">
