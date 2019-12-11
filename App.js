@@ -32,6 +32,7 @@ import {
 import Geolocation from 'react-native-geolocation-service';
 
 import Map from './src/Map';
+import Homepage from './src/Homepage';
 
 class App extends Component {
   state = {
@@ -85,7 +86,13 @@ class App extends Component {
     {
       this.state.latitude === null && this.findCoordinates();
     }
-    return <Map />;
+    return (
+      <>
+        {/* <Map /> */}
+        <Homepage />
+        {/* <Text>Hello</Text> */}
+      </>
+    );
   }
 }
 
