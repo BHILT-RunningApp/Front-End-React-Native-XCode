@@ -106,6 +106,7 @@ export default class Homepage extends Component {
             flex: 2,
             justifyContent: 'center',
             alignItems: 'center',
+
           }}>
           <View style={styles.header}>
             <Text style={styles.boldText}> Savior</Text>
@@ -117,7 +118,9 @@ export default class Homepage extends Component {
               You have set Your start point to "Manchester Federation house".
               Please, select on the below map were you would like to go
             </Text>
+
           </View>
+          <View style={styles.welcome}></View>
           <View style={styles.page}>
             <View style={styles.container}>
               <MapboxGL.MapView onPress={this.mapPressed} style={styles.map}>
@@ -159,10 +162,9 @@ const styles = StyleSheet.create({
   //   color: "#000"
   // },
   boldText: {
-    paddingTop: 40,
-    paddingBottom: 20,
-    fontWeight: 'bold',
-    fontSize: 30,
+    fontFamily: 'Lobster-Regular',
+    // fontWeight: 'bold',
+    fontSize: 46,
     alignSelf: 'center',
     color: '#24416b',
   },
@@ -176,8 +178,8 @@ const styles = StyleSheet.create({
   welcomeText: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 40,
-    paddingLeft: 40,
+    paddingBottom: 20,
+    paddingLeft: 20,
     color: '#24354f',
   },
   map: {
