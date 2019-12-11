@@ -121,6 +121,10 @@ class Map extends Component {
     pollutionCoeff: 0.8,
   };
 
+  static navigationOptions = {
+    title: 'Hey',
+  };
+
   fetchRoute = (startCoordinates, endCoordinates, avoidAreas) => {
     getRoute(startCoordinates, endCoordinates, avoidAreas).then(({data}) => {
       const markerArr = [];

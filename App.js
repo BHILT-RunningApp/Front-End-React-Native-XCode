@@ -21,6 +21,9 @@ import {
   PermissionsAndroid,
 } from 'react-native';
 
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+
 import {
   Header,
   LearnMoreLinks,
@@ -33,6 +36,14 @@ import Geolocation from 'react-native-geolocation-service';
 
 import Map from './src/Map';
 import Homepage from './src/Homepage';
+import LoginPage from './src/LoginPage';
+
+const appStackNavigator = createStackNavigator(
+  {Homepage, Map, LoginPage},
+  {initialRouteName: 'Homepage'},
+);
+
+const Application = createAppContainer(appStackNavigator);
 
 class App extends Component {
   state = {
@@ -58,38 +69,43 @@ class App extends Component {
   };
 
   componentDidMount() {
-    async function requestLocationPermission() {
-      try {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-          {
-            title: 'Location Permission',
-            message: 'Running App needs access to your camera ',
-            buttonNeutral: 'Ask Me Later',
-            buttonNegative: 'Cancel',
-            buttonPositive: 'OK',
-          },
-        );
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log('Location Permission Granted');
-        } else {
-          console.log('Location permission denied');
+    if (Platform.OS !== 'ios') {
+      async function requestLocationPermission() {
+        try {
+          const granted = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+            {
+              title: 'Location Permission',
+              message: 'Running App needs access to your camera ',
+              buttonNeutral: 'Ask Me Later',
+              buttonNegative: 'Cancel',
+              buttonPositive: 'OK',
+            },
+          );
+          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            console.log('Location Permission Granted');
+          } else {
+            console.log('Location permission denied');
+          }
+        } catch (err) {
+          console.warn(err);
         }
-      } catch (err) {
-        console.warn(err);
       }
+      requestLocationPermission();
     }
-    requestLocationPermission();
   }
 
   render() {
     {
       this.state.latitude === null && this.findCoordinates();
     }
+    // console.log('STATE => ', this.state);
     return (
       <>
         {/* <Map /> */}
-        <Homepage />
+        {/* <Homepage /> */}
+        <Application />
+        {/* <LoginPage /> */}
         {/* <Text>Hello</Text> */}
       </>
     );
