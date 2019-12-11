@@ -26,10 +26,17 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Map from './src/Map';
+import Homepage from './src/Homepage';
 
 class App extends Component {
   render() {
-    return <Map />;
+    return (
+      <>
+        {/* <Map /> */}
+        <Homepage />
+        {/* <Text>Hello</Text> */}
+      </>
+    );
   }
 }
 

@@ -16,10 +16,10 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* FEReactNativeXCodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FEReactNativeXCodeTests.m */; };
-		41D97627BAB882BB5DEB1A05 /* libPods-FEReactNativeXCode-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E218A91E2BECC02E393F3F4 /* libPods-FEReactNativeXCode-tvOS.a */; };
-		A72301335B904D8E47F761A0 /* libPods-FEReactNativeXCode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 786D207C19CAAB5459F957EF /* libPods-FEReactNativeXCode.a */; };
-		C2D85B7D0C43AA75D1FC9E32 /* libPods-FEReactNativeXCode-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8900743040DB1E1393DFDE2E /* libPods-FEReactNativeXCode-tvOSTests.a */; };
-		D058C6989078CC14BC1D7B3E /* libPods-FEReactNativeXCodeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE00B5CA8BA58E00D501027C /* libPods-FEReactNativeXCodeTests.a */; };
+		4F8CE90B4851A48467C2A2E0 /* libPods-SaviorTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D02B7305E7C749BE455D1A8 /* libPods-SaviorTests.a */; };
+		52F5F94D4AB9463FE8859492 /* libPods-Savior-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70136BD43B34C4BCF5D96571 /* libPods-Savior-tvOS.a */; };
+		C42D18AA9A58B91B0A681307 /* libPods-Savior.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 415D1E86BDF47F7D101446AF /* libPods-Savior.a */; };
+		CC2FF8976F63CD714482CA77 /* libPods-Savior-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C073A312D7C088B4FEC5E9A /* libPods-Savior-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,20 +53,20 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FEReactNativeXCode/main.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Savior-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Savior-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Savior-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Savior-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E218A91E2BECC02E393F3F4 /* libPods-FEReactNativeXCode-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FEReactNativeXCode-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		51DA34E1D489BBF7B83CB955 /* Pods-FEReactNativeXCode-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEReactNativeXCode-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-FEReactNativeXCode-tvOS/Pods-FEReactNativeXCode-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		65FDB2C03A91A5150E56F8F5 /* Pods-FEReactNativeXCode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEReactNativeXCode.release.xcconfig"; path = "Target Support Files/Pods-FEReactNativeXCode/Pods-FEReactNativeXCode.release.xcconfig"; sourceTree = "<group>"; };
-		6A02C21FA0AD71A52DC07368 /* Pods-FEReactNativeXCodeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEReactNativeXCodeTests.release.xcconfig"; path = "Target Support Files/Pods-FEReactNativeXCodeTests/Pods-FEReactNativeXCodeTests.release.xcconfig"; sourceTree = "<group>"; };
-		786D207C19CAAB5459F957EF /* libPods-FEReactNativeXCode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FEReactNativeXCode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8900743040DB1E1393DFDE2E /* libPods-FEReactNativeXCode-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FEReactNativeXCode-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A04DEA5479E805851B1FC4B /* Pods-FEReactNativeXCodeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEReactNativeXCodeTests.debug.xcconfig"; path = "Target Support Files/Pods-FEReactNativeXCodeTests/Pods-FEReactNativeXCodeTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9592A6295500D979E860E241 /* Pods-FEReactNativeXCode-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEReactNativeXCode-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-FEReactNativeXCode-tvOSTests/Pods-FEReactNativeXCode-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B3C8E48B32368214DFDDD3F3 /* Pods-FEReactNativeXCode-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEReactNativeXCode-tvOS.release.xcconfig"; path = "Target Support Files/Pods-FEReactNativeXCode-tvOS/Pods-FEReactNativeXCode-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		CE00B5CA8BA58E00D501027C /* libPods-FEReactNativeXCodeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FEReactNativeXCodeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD55F73C27B36042FCB6638C /* Pods-FEReactNativeXCode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEReactNativeXCode.debug.xcconfig"; path = "Target Support Files/Pods-FEReactNativeXCode/Pods-FEReactNativeXCode.debug.xcconfig"; sourceTree = "<group>"; };
-		E6988D7D30DE0BCF709676E4 /* Pods-FEReactNativeXCode-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEReactNativeXCode-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-FEReactNativeXCode-tvOSTests/Pods-FEReactNativeXCode-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		415D1E86BDF47F7D101446AF /* libPods-Savior.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Savior.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		549DAA379F5006A30B78C355 /* Pods-Savior-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Savior-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Savior-tvOS/Pods-Savior-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		5C073A312D7C088B4FEC5E9A /* libPods-Savior-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Savior-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F146D83E6B4305F53C89BD0 /* Pods-SaviorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaviorTests.release.xcconfig"; path = "Target Support Files/Pods-SaviorTests/Pods-SaviorTests.release.xcconfig"; sourceTree = "<group>"; };
+		70136BD43B34C4BCF5D96571 /* libPods-Savior-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Savior-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D02B7305E7C749BE455D1A8 /* libPods-SaviorTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SaviorTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB1597A5B7221FFCA94B520B /* Pods-Savior.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Savior.debug.xcconfig"; path = "Target Support Files/Pods-Savior/Pods-Savior.debug.xcconfig"; sourceTree = "<group>"; };
+		C31C502D93B6C3BB6E38AF76 /* Pods-Savior.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Savior.release.xcconfig"; path = "Target Support Files/Pods-Savior/Pods-Savior.release.xcconfig"; sourceTree = "<group>"; };
+		DA6D7E211CA3DFACF90D291B /* Pods-Savior-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Savior-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Savior-tvOS/Pods-Savior-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F230963069AA6434923A5460 /* Pods-Savior-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Savior-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Savior-tvOSTests/Pods-Savior-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F24171F20256A677AE743861 /* Pods-SaviorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaviorTests.debug.xcconfig"; path = "Target Support Files/Pods-SaviorTests/Pods-SaviorTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FD766743A702743A4EDA0A3B /* Pods-Savior-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Savior-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Savior-tvOSTests/Pods-Savior-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D058C6989078CC14BC1D7B3E /* libPods-FEReactNativeXCodeTests.a in Frameworks */,
+				4F8CE90B4851A48467C2A2E0 /* libPods-SaviorTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A72301335B904D8E47F761A0 /* libPods-FEReactNativeXCode.a in Frameworks */,
+				C42D18AA9A58B91B0A681307 /* libPods-Savior.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41D97627BAB882BB5DEB1A05 /* libPods-FEReactNativeXCode-tvOS.a in Frameworks */,
+				52F5F94D4AB9463FE8859492 /* libPods-Savior-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2D85B7D0C43AA75D1FC9E32 /* libPods-FEReactNativeXCode-tvOSTests.a in Frameworks */,
+				CC2FF8976F63CD714482CA77 /* libPods-Savior-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,10 +141,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				786D207C19CAAB5459F957EF /* libPods-FEReactNativeXCode.a */,
-				4E218A91E2BECC02E393F3F4 /* libPods-FEReactNativeXCode-tvOS.a */,
-				8900743040DB1E1393DFDE2E /* libPods-FEReactNativeXCode-tvOSTests.a */,
-				CE00B5CA8BA58E00D501027C /* libPods-FEReactNativeXCodeTests.a */,
+				415D1E86BDF47F7D101446AF /* libPods-Savior.a */,
+				70136BD43B34C4BCF5D96571 /* libPods-Savior-tvOS.a */,
+				5C073A312D7C088B4FEC5E9A /* libPods-Savior-tvOSTests.a */,
+				9D02B7305E7C749BE455D1A8 /* libPods-SaviorTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -152,14 +152,14 @@
 		5A23C39094709F4CBAA6E678 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DD55F73C27B36042FCB6638C /* Pods-FEReactNativeXCode.debug.xcconfig */,
-				65FDB2C03A91A5150E56F8F5 /* Pods-FEReactNativeXCode.release.xcconfig */,
-				51DA34E1D489BBF7B83CB955 /* Pods-FEReactNativeXCode-tvOS.debug.xcconfig */,
-				B3C8E48B32368214DFDDD3F3 /* Pods-FEReactNativeXCode-tvOS.release.xcconfig */,
-				9592A6295500D979E860E241 /* Pods-FEReactNativeXCode-tvOSTests.debug.xcconfig */,
-				E6988D7D30DE0BCF709676E4 /* Pods-FEReactNativeXCode-tvOSTests.release.xcconfig */,
-				8A04DEA5479E805851B1FC4B /* Pods-FEReactNativeXCodeTests.debug.xcconfig */,
-				6A02C21FA0AD71A52DC07368 /* Pods-FEReactNativeXCodeTests.release.xcconfig */,
+				AB1597A5B7221FFCA94B520B /* Pods-Savior.debug.xcconfig */,
+				C31C502D93B6C3BB6E38AF76 /* Pods-Savior.release.xcconfig */,
+				549DAA379F5006A30B78C355 /* Pods-Savior-tvOS.debug.xcconfig */,
+				DA6D7E211CA3DFACF90D291B /* Pods-Savior-tvOS.release.xcconfig */,
+				F230963069AA6434923A5460 /* Pods-Savior-tvOSTests.debug.xcconfig */,
+				FD766743A702743A4EDA0A3B /* Pods-Savior-tvOSTests.release.xcconfig */,
+				F24171F20256A677AE743861 /* Pods-SaviorTests.debug.xcconfig */,
+				5F146D83E6B4305F53C89BD0 /* Pods-SaviorTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -204,7 +204,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SaviorTests" */;
 			buildPhases = (
-				6F2B7E1048548342305E9D1B /* [CP] Check Pods Manifest.lock */,
+				A7B5783D42E2AD944A7F4532 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -223,13 +223,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Savior" */;
 			buildPhases = (
-				206EC5ADE8AE0C85DD8C103A /* [CP] Check Pods Manifest.lock */,
+				21D5BEC69FAAF3C7F4598A49 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				90DFD7CED8C43BACE2A02AFC /* [CP] Embed Pods Frameworks */,
+				983C4706F171E754674F1CA6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -244,7 +244,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Savior-tvOS" */;
 			buildPhases = (
-				4F71793525F929B81B6D9158 /* [CP] Check Pods Manifest.lock */,
+				AF77963F92F8571812C90346 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -264,7 +264,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Savior-tvOSTests" */;
 			buildPhases = (
-				C3615E55BA23D0C88267621F /* [CP] Check Pods Manifest.lock */,
+				A699C0A523B47F845E3C4132 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -285,7 +285,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -380,7 +380,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		206EC5ADE8AE0C85DD8C103A /* [CP] Check Pods Manifest.lock */ = {
+		21D5BEC69FAAF3C7F4598A49 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -395,7 +395,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FEReactNativeXCode-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Savior-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -416,57 +416,13 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		4F71793525F929B81B6D9158 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FEReactNativeXCode-tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6F2B7E1048548342305E9D1B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FEReactNativeXCodeTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		90DFD7CED8C43BACE2A02AFC /* [CP] Embed Pods Frameworks */ = {
+		983C4706F171E754674F1CA6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FEReactNativeXCode/Pods-FEReactNativeXCode-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Savior/Pods-Savior-frameworks.sh",
 				"${PODS_ROOT}/../../node_modules/@react-native-mapbox-gl/maps/ios/Mapbox.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -475,10 +431,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FEReactNativeXCode/Pods-FEReactNativeXCode-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Savior/Pods-Savior-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C3615E55BA23D0C88267621F /* [CP] Check Pods Manifest.lock */ = {
+		A699C0A523B47F845E3C4132 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -493,7 +449,51 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FEReactNativeXCode-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Savior-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7B5783D42E2AD944A7F4532 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SaviorTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF77963F92F8571812C90346 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Savior-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -605,7 +605,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A04DEA5479E805851B1FC4B /* Pods-FEReactNativeXCodeTests.debug.xcconfig */;
+			baseConfigurationReference = F24171F20256A677AE743861 /* Pods-SaviorTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 8BT657KLS3;
@@ -629,7 +629,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A02C21FA0AD71A52DC07368 /* Pods-FEReactNativeXCodeTests.release.xcconfig */;
+			baseConfigurationReference = 5F146D83E6B4305F53C89BD0 /* Pods-SaviorTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -650,7 +650,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD55F73C27B36042FCB6638C /* Pods-FEReactNativeXCode.debug.xcconfig */;
+			baseConfigurationReference = AB1597A5B7221FFCA94B520B /* Pods-Savior.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -671,7 +671,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65FDB2C03A91A5150E56F8F5 /* Pods-FEReactNativeXCode.release.xcconfig */;
+			baseConfigurationReference = C31C502D93B6C3BB6E38AF76 /* Pods-Savior.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -691,7 +691,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51DA34E1D489BBF7B83CB955 /* Pods-FEReactNativeXCode-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 549DAA379F5006A30B78C355 /* Pods-Savior-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -720,7 +720,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3C8E48B32368214DFDDD3F3 /* Pods-FEReactNativeXCode-tvOS.release.xcconfig */;
+			baseConfigurationReference = DA6D7E211CA3DFACF90D291B /* Pods-Savior-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -749,7 +749,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9592A6295500D979E860E241 /* Pods-FEReactNativeXCode-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = F230963069AA6434923A5460 /* Pods-Savior-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -777,7 +777,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6988D7D30DE0BCF709676E4 /* Pods-FEReactNativeXCode-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = FD766743A702743A4EDA0A3B /* Pods-Savior-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -807,6 +807,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -860,6 +861,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
