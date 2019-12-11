@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  Dimensions,
+} from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 
 MapboxGL.setAccessToken(
@@ -76,19 +83,12 @@ export default class Homepage extends Component {
             flex: 2,
             justifyContent: 'center',
             alignItems: 'center',
-            padding: 40,
+            // padding: 40,
           }}>
           <View style={styles.header}>
-            <Text style={styles.boldText}> Savior</Text>
+            <Text style={styles.boldText}>Saviar</Text>
           </View>
-          <View style={styles.welcome}>
-            <Text style={styles.welcomeText}>
-              Welcome to Saviar {this.state.username.toUpperCase()},{'\n'} a
-              clean route through impure air!{'\n'}
-              You have set Your start point to "Manchester Federation house".
-              Please, select on the below map were you would like to go...
-            </Text>
-          </View>
+          <View style={styles.welcome}></View>
           <View style={styles.page}>
             <View style={styles.container}>
               <MapboxGL.MapView onPress={this.mapPressed} style={styles.map}>
@@ -123,10 +123,9 @@ const styles = StyleSheet.create({
   //   color: "#000"
   // },
   boldText: {
-    paddingTop: 40,
-    paddingBottom: 20,
-    fontWeight: 'bold',
-    fontSize: 30,
+    fontFamily: 'Lobster-Regular',
+    // fontWeight: 'bold',
+    fontSize: 46,
     alignSelf: 'center',
     color: '#24416b',
   },
@@ -140,14 +139,14 @@ const styles = StyleSheet.create({
   welcomeText: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 40,
-    paddingLeft: 40,
+    paddingBottom: 20,
+    paddingLeft: 20,
     color: '#24354f',
   },
   map: {
     flex: 1,
-    height: 100,
-    width: 300,
+    // height: 100,
+    width: Dimensions.get('window').width,
   },
   page: {
     flex: 1,

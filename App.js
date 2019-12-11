@@ -38,6 +38,11 @@ class App extends Component {
   state = {
     latitude: null,
     longitude: null,
+    endCoordinates: [],
+  };
+
+  changeEndCoordinates = endcoords => {
+    this.setState({endCoordinates: []});
   };
 
   findCoordinates = () => {
@@ -88,8 +93,8 @@ class App extends Component {
     }
     return (
       <>
-        {/* <Map /> */}
-        <Homepage />
+        {/* <Map latitude={this.state.latitude} longitude={this.state.longitude} /> */}
+        <Homepage changeEndCoordinates={this.changeEndCoordinates} />
         {/* <Text>Hello</Text> */}
       </>
     );

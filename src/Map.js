@@ -140,7 +140,7 @@ class Map extends Component {
   showPollutionData = () => {
     const TOD = 'am';
     return this.state.pollutionData.map((point, index) => {
-      console.log(point);
+      // console.log(point);
       return (
         <MapboxGL.PointAnnotation
           key={index}
@@ -161,7 +161,10 @@ class Map extends Component {
 
   componentDidMount() {
     MapboxGL.setTelemetryEnabled(false);
-    this.fetchRoute(this.state.startCoordinates, this.state.endCoordinates);
+    this.fetchRoute(
+      [this.props.latitude, this.props.longitude],
+      this.state.endCoordinates,
+    );
     this.fetchPollutionData();
   }
 
@@ -170,7 +173,8 @@ class Map extends Component {
   //   }
 
   render() {
-    console.log('PP => ', this.state.pollutionData);
+    // console.log('PP => ', this.state.pollutionData);
+    console.log(this.props.latitude);
     return (
       <View style={styles.page}>
         <View style={styles.container}>

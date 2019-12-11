@@ -95972,6 +95972,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _Map = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[12], "./src/Map"));
 
+  var _Homepage = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[13], "./src/Homepage"));
+
   var _jsxFileName = "/Users/bentaylor/Desktop/Front-End-React-Native-XCode/App.js";
 
   var App = function (_Component) {
@@ -95990,12 +95992,20 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
       _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(App)).call.apply(_getPrototypeOf2, [this].concat(args)));
       _this.state = {
-        location: null
+        latitude: null,
+        longitude: null
       };
 
       _this.findCoordinates = function () {
+        console.log('Find coordinates running');
+
         _reactNativeGeolocationService.default.getCurrentPosition(function (location) {
-          console.log(location);
+          console.log(location.coords.latitude, location.coords.longitude);
+
+          _this.setState({
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude
+          });
         }, function (error) {
           console.log(error.code, error.message);
         }, {
@@ -96011,9 +96021,9 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     (0, _createClass2.default)(App, [{
       key: "componentDidMount",
       value: function componentDidMount() {
-        function requestCameraPermission() {
+        function requestLocationPermission() {
           var granted;
-          return _regenerator.default.async(function requestCameraPermission$(_context) {
+          return _regenerator.default.async(function requestLocationPermission$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -96052,36 +96062,18 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           }, null, null, [[0, 7]]);
         }
 
-        requestCameraPermission();
+        requestLocationPermission();
       }
     }, {
       key: "render",
       value: function render() {
-        return _react.default.createElement(_reactNative.View, {
+        {
+          this.state.latitude === null && this.findCoordinates();
+        }
+        return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Map.default, {
           __source: {
             fileName: _jsxFileName,
             lineNumber: 91
-          }
-        }, _react.default.createElement(_reactNative.TouchableOpacity, {
-          onPress: this.findCoordinates,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 92
-          }
-        }, _react.default.createElement(_reactNative.Text, {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 93
-          }
-        }, "Find My Coords?"), _react.default.createElement(_reactNative.Text, {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 94
-          }
-        }, "Location: ", this.state.location)), _react.default.createElement(_Map.default, {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 96
           }
         }));
       }
@@ -96091,7 +96083,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = App;
   exports.default = _default;
-},447,[1,9,103,24,25,32,34,37,54,2,448,530,456],"App.js");
+},447,[1,9,103,24,25,32,34,37,54,2,448,530,456,534],"App.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96529,7 +96521,9 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _api = _$$_REQUIRE(_dependencyMap[10], "../api/api");
 
-  var _maps = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[11], "@react-native-mapbox-gl/maps"));
+  var _ppCard = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[11], "./pp-card"));
+
+  var _maps = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[12], "@react-native-mapbox-gl/maps"));
 
   var _jsxFileName = "/Users/bentaylor/Desktop/Front-End-React-Native-XCode/src/Map.js";
 
@@ -96559,6 +96553,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: 'white',
+      borderRadius: 15
+    },
+    annotationContainerPollution: {
+      width: 60,
+      height: 60,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'transparent',
       borderRadius: 15
     },
     annotationFill: {
@@ -96596,6 +96598,30 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         zoom: 12,
         startCoordinates: [53.457915, -2.226825],
         endCoordinates: [53.487144, -2.248454],
+        pollutionData: [{
+          pp_coordinates: {
+            lat: 53.481471,
+            long: -2.242734
+          },
+          am: {
+            pollutants: {
+              no2: 86.44,
+              pm10: 43.33,
+              so2: 0.44,
+              o3: 2.59,
+              pm25: 25.3
+            },
+            top_corner: {
+              lat: 53.458971,
+              long: -2.250234
+            },
+            bottom_corner: {
+              lat: 53.503971,
+              long: -2.235234
+            },
+            aqi: 3
+          }
+        }],
         directions: [],
         rectangle: [[53.447967, -2.260778], [53.443699, -2.25168]],
         isLoading: true,
@@ -96620,6 +96646,45 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         });
       };
 
+      _this.fetchPollutionData = function () {
+        (0, _api.getPollutionData)().then(function (_ref2) {
+          var pollutionPoints = _ref2.data.pollutionPoints;
+
+          _this.setState({
+            pollutionData: pollutionPoints
+          });
+        });
+      };
+
+      _this.showPollutionData = function () {
+        var TOD = 'am';
+        return _this.state.pollutionData.map(function (point, index) {
+          console.log(point);
+          return _react.default.createElement(_maps.default.PointAnnotation, {
+            key: index,
+            id: String(index),
+            coordinate: [point.pp_coordinates.long, point.pp_coordinates.lat],
+            title: '',
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 145
+            }
+          }, _react.default.createElement(_reactNative.View, {
+            style: mapStyle.annotationContainerPollution,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 150
+            }
+          }), _react.default.createElement(_maps.default.Callout, {
+            title: "Name: " + point.name + "\n\nCurrent AQI: " + point[TOD].aqi + "\nNitrogen Dioxide: " + point[TOD].pollutants.no2 + "\nPM10: " + point[TOD].pollutants.pm10 + "\nSulphur Dioxide: " + point[TOD].pollutants.so2 + "\nOzone: " + point[TOD].pollutants.o3 + "\nPM2.5: " + point[TOD].pollutants.pm25,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 153
+            }
+          }));
+        });
+      };
+
       return _this;
     }
 
@@ -96629,33 +96694,35 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         _maps.default.setTelemetryEnabled(false);
 
         this.fetchRoute(this.state.startCoordinates, this.state.endCoordinates);
+        this.fetchPollutionData();
       }
     }, {
       key: "render",
       value: function render() {
+        console.log('PP => ', this.state.pollutionData);
         return _react.default.createElement(_reactNative.View, {
           style: styles.page,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 108
+            lineNumber: 175
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 109
+            lineNumber: 176
           }
         }, _react.default.createElement(_maps.default.MapView, {
           style: styles.map,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 110
+            lineNumber: 177
           }
         }, _react.default.createElement(_maps.default.UserLocation, {
           visible: true,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 111
+            lineNumber: 178
           }
         }), _react.default.createElement(_maps.default.Camera, {
           defaultSettings: {
@@ -96664,43 +96731,43 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 112
+            lineNumber: 179
           }
         }), this.state.markers.map(function (marker, index) {
           return _react.default.createElement(_maps.default.PointAnnotation, {
             key: index,
             id: String(index),
             coordinate: [marker[0], marker[1]],
-            title: 'no me toques los huevos',
+            title: '',
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 123
+              lineNumber: 190
             }
           }, _react.default.createElement(_reactNative.View, {
             style: mapStyle.annotationContainer,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 128
+              lineNumber: 195
             }
           }, _react.default.createElement(_reactNative.View, {
             style: mapStyle.annotationFill,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 129
+              lineNumber: 196
             }
           })), _react.default.createElement(_maps.default.Callout, {
             title: "no me toques los huevos",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 131
+              lineNumber: 198
             }
           }));
-        }), _react.default.createElement(_maps.default.ShapeSource, {
+        }), this.showPollutionData(), _react.default.createElement(_maps.default.ShapeSource, {
           id: "earthquakes",
           url: "https://project-bhilt.appspot.com/api/pollution-points",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 138
+            lineNumber: 206
           }
         }, _react.default.createElement(_maps.default.HeatmapLayer, {
           id: "earthquakes",
@@ -96712,7 +96779,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 141
+            lineNumber: 209
           }
         })))));
       }
@@ -96722,14 +96789,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = Map;
   exports.default = _default;
-},456,[1,9,24,25,32,34,37,54,2,448,457,484],"src/Map.js");
+},456,[1,9,24,25,32,34,37,54,2,448,457,532,484],"src/Map.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.getRoute = void 0;
+  exports.getPollutionData = exports.getRoute = void 0;
 
   var _axios = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "axios"));
 
@@ -96742,6 +96809,12 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.getRoute = getRoute;
+
+  var getPollutionData = function getPollutionData() {
+    return _axios.default.get('https://project-bhilt.appspot.com/api/pollution-points/');
+  };
+
+  exports.getPollutionData = getPollutionData;
 },457,[1,458],"api/api.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "./lib/axios");
@@ -106348,6 +106421,458 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default = Geolocation;
   exports.default = _default;
 },531,[1,103,2],"node_modules/react-native-geolocation-service/js/Geolocation.android.js");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _getPrototypeOf3 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/inherits"));
+
+  var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "react"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[7], "react-native");
+
+  var _axios = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "axios"));
+
+  var _utils = _$$_REQUIRE(_dependencyMap[9], "../utils/utils");
+
+  var _jsxFileName = "/Users/bentaylor/Desktop/Front-End-React-Native-XCode/src/pp-card.js";
+
+  var PollutionPointCard = function (_React$Component) {
+    (0, _inherits2.default)(PollutionPointCard, _React$Component);
+
+    function PollutionPointCard() {
+      var _getPrototypeOf2;
+
+      var _this;
+
+      (0, _classCallCheck2.default)(this, PollutionPointCard);
+
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(PollutionPointCard)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this.state = {
+        pollution_point: {},
+        isLoading: true
+      };
+      return _this;
+    }
+
+    (0, _createClass2.default)(PollutionPointCard, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        var _this2 = this;
+
+        _axios.default.get('https://project-bhilt.appspot.com/api/pollution-points/5def94a1d5e6bb4ecb429416').then(function (response) {
+          _this2.setState({
+            pollution_point: response.data.pollutionPoint,
+            isLoading: false
+          });
+        });
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var pollution_point = this.state.pollution_point;
+        var pollutionPairs = (0, _utils.retrieveNestedData)(pollution_point);
+        var amArr = pollutionPairs[0];
+        var aqi = 0;
+        var no2 = 0;
+        var pm10 = 0;
+        var so2 = 0;
+        var o3 = 0;
+        var pm25 = 0;
+
+        if (!this.state.isLoading) {
+          amArr.map(function (element) {
+            if (element.includes('aqi:')) {
+              var score = element.split(':');
+              aqi = score[1];
+            }
+
+            if (element.includes('no2:')) {
+              var _score = element.split(':');
+
+              no2 = _score[1];
+            }
+
+            if (element.includes('pm10:')) {
+              var _score2 = element.split(':');
+
+              pm10 = _score2[1];
+            }
+
+            if (element.includes('so2:')) {
+              var _score3 = element.split(':');
+
+              so2 = _score3[1];
+            }
+
+            if (element.includes('o3:')) {
+              var _score4 = element.split(':');
+
+              o3 = _score4[1];
+            }
+
+            if (element.includes('pm25:')) {
+              var _score5 = element.split(':');
+
+              pm25 = _score5[1];
+            }
+          });
+        }
+
+        return _react.default.createElement(_reactNative.View, {
+          style: styles.container,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 70
+          }
+        }, !this.state.isLoading && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactNative.Text, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 73
+          }
+        }, "Station: ", pollution_point.name, ":"), _react.default.createElement(_reactNative.Text, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 74
+          }
+        }, "Current AQI: ", aqi), _react.default.createElement(_reactNative.Text, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 75
+          }
+        }, "Nitrogen Dioxide: ", no2), _react.default.createElement(_reactNative.Text, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 76
+          }
+        }, "PM10: ", pm10), _react.default.createElement(_reactNative.Text, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 77
+          }
+        }, "Sulfur Dioxide: ", so2), _react.default.createElement(_reactNative.Text, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 78
+          }
+        }, "Ozone: ", o3), _react.default.createElement(_reactNative.Text, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 79
+          }
+        }, "PM2.5: ", pm25)));
+      }
+    }]);
+    return PollutionPointCard;
+  }(_react.default.Component);
+
+  exports.default = PollutionPointCard;
+
+  var styles = _reactNative.StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: 'rgba(232, 232, 232, 1)',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  });
+},532,[1,24,25,32,34,37,54,2,458,533],"src/pp-card.js");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.retrieveNestedData = void 0;
+
+  var retrieveNestedData = function retrieveNestedData(pp) {
+    var pairs = [];
+    var renderData = Object.keys(pp).map(function (item) {
+      var tempArr = [];
+
+      if (pp[item].pollutants) {
+        tempArr.push(item);
+      }
+
+      var pollutants = pp[item].pollutants;
+
+      if (pp[item].aqi) {
+        tempArr.push("aqi: " + pp[item].aqi);
+      }
+
+      if (pollutants) {
+        var eachPollutant = Object.keys(pollutants).map(function (item) {
+          var onePoll = pollutants[item];
+          tempArr.push(item + ":" + onePoll);
+        });
+      }
+
+      if (tempArr.length > 0) {
+        pairs.push(tempArr);
+      }
+    });
+    return pairs;
+  };
+
+  exports.retrieveNestedData = retrieveNestedData;
+},533,[],"utils/utils.js");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  var _interopRequireWildcard = _$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/interopRequireWildcard");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/createClass"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/inherits"));
+
+  var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "react"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[8], "react-native");
+
+  var _maps = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "@react-native-mapbox-gl/maps"));
+
+  var _jsxFileName = "/Users/bentaylor/Desktop/Front-End-React-Native-XCode/src/Homepage.js";
+
+  _maps.default.setAccessToken('pk.eyJ1IjoiaGFycnlwZnJ5IiwiYSI6ImNrM3EwYTVmYjA4Mzgzbm1vd2h0NjRobDgifQ.ZrK9wTTyKg6YpwI2KGC9bQ');
+
+  var Homepage = function (_Component) {
+    (0, _inherits2.default)(Homepage, _Component);
+
+    function Homepage(props) {
+      var _this;
+
+      (0, _classCallCheck2.default)(this, Homepage);
+      _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Homepage).call(this, props));
+
+      _this.mapPressed = function (e) {
+        console.log(e.geometry.coordinates);
+
+        _this.setState({
+          endCoordinates: e.geometry.coordinates,
+          markerDropped: true
+        });
+      };
+
+      _this.state = {
+        isLoading: true,
+        user: {},
+        username: '',
+        location: '',
+        latitudeDelta: 0.0022,
+        longitudeDelta: 0.0121,
+        latitude: 0,
+        longitude: 0,
+        defaultCenter: {
+          lat: 53.479915,
+          lng: -2.236825
+        },
+        zoom: 14,
+        endCoordinates: [],
+        markerDropped: false
+      };
+      return _this;
+    }
+
+    (0, _createClass2.default)(Homepage, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        var _this2 = this;
+
+        return fetch('https://project-bhilt.appspot.com/api/users').then(function (response) {
+          return response.json();
+        }).then(function (responseJson) {
+          var singleUser = responseJson.users.filter(function (user) {
+            return user.username == 'ben';
+          });
+          var location = singleUser[0].current_location.split(', ');
+          var latitude = Number(location[0]);
+          var longitude = Number(location[1]);
+
+          _this2.setState({
+            isLoading: false,
+            user: singleUser,
+            username: singleUser[0].username,
+            location: singleUser[0].current_location,
+            latitude: latitude,
+            longitude: longitude
+          });
+        }).catch(function (error) {
+          console.error(error);
+        });
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        if (this.state.isLoading) {
+          return _react.default.createElement(_reactNative.View, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 75
+            }
+          }, _react.default.createElement(_reactNative.Text, {
+            style: styles.loading,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 76
+            }
+          }, "Loading..."));
+        } else {
+          return _react.default.createElement(_reactNative.View, {
+            style: {
+              flex: 2,
+              justifyContent: 'center',
+              alignItems: 'center'
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 81
+            }
+          }, _react.default.createElement(_reactNative.View, {
+            style: styles.header,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 88
+            }
+          }, _react.default.createElement(_reactNative.Text, {
+            style: styles.boldText,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 89
+            }
+          }, "Saviar")), _react.default.createElement(_reactNative.View, {
+            style: styles.welcome,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 91
+            }
+          }), _react.default.createElement(_reactNative.View, {
+            style: styles.page,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 92
+            }
+          }, _react.default.createElement(_reactNative.View, {
+            style: styles.container,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 93
+            }
+          }, _react.default.createElement(_maps.default.MapView, {
+            onPress: this.mapPressed,
+            style: styles.map,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 94
+            }
+          }, _react.default.createElement(_maps.default.UserLocation, {
+            visible: true,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 95
+            }
+          }), _react.default.createElement(_maps.default.Camera, {
+            defaultSettings: {
+              centerCoordinate: [this.state.defaultCenter.lng, this.state.defaultCenter.lat],
+              zoomLevel: this.state.zoom
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 96
+            }
+          }), this.state.markerDropped && _react.default.createElement(_maps.default.PointAnnotation, {
+            id: '1',
+            coordinate: this.state.endCoordinates,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 106
+            }
+          })))));
+        }
+      }
+    }]);
+    return Homepage;
+  }(_react.Component);
+
+  exports.default = Homepage;
+
+  var styles = _reactNative.StyleSheet.create({
+    boldText: {
+      fontFamily: 'Lobster-Regular',
+      fontSize: 46,
+      alignSelf: 'center',
+      color: '#24416b'
+    },
+    loading: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 100,
+      fontSize: 40,
+      fontWeight: 'bold'
+    },
+    welcomeText: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingBottom: 20,
+      paddingLeft: 20,
+      color: '#24354f'
+    },
+    map: {
+      flex: 1,
+      width: _reactNative.Dimensions.get('window').width
+    },
+    page: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#F5FCFF'
+    }
+  });
+
+  var mapStyle = _reactNative.StyleSheet.create({
+    annotationContainer: {
+      width: 30,
+      height: 30,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'white',
+      borderRadius: 15
+    },
+    annotationFill: {
+      width: 30,
+      height: 30,
+      borderRadius: 15,
+      backgroundColor: 'green',
+      transform: [{
+        scale: 0.6
+      }]
+    }
+  });
+},534,[1,9,24,25,32,34,37,54,2,484],"src/Homepage.js");
 __r(91);
 __r(0);
 //# sourceMappingURL=index.map
