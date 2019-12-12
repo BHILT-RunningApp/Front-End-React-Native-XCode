@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 import React from 'react';
 
 import {
@@ -10,6 +11,7 @@ import {
   AsyncStorage,
   Button,
   Alert,
+  ImageBackground,
 } from 'react-native';
 import getUser from './Api.js';
 
@@ -24,52 +26,60 @@ export default class Login extends React.Component {
   render() {
     const {username, password} = this.state;
     return (
-      <KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
-        <View style={styles.container}>
-          {/* <Text style={styles.header} /> */}
+      <ImageBackground
+        source={require('../assets/pics/running.jpeg')}
+        style={styles.imgBackground}
+        resizeMode="cover"
+        imageStyle={{opacity: 0.2}}>
+        <KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
+          <View style={styles.container}>
+            {/* <Text style={styles.header} /> */}
 
-          <TextInput
-            style={styles.TextInput}
-            placeholder="username"
-            onChangeText={username => this.setState({username})}
-          />
+            <TextInput
+              style={styles.TextInput}
+              placeholder="username"
+              onChangeText={username => this.setState({username})}
+            />
 
-          <TextInput
-            style={styles.TextInput}
-            placeholder="password"
-            onChangeText={password => this.setState({password})}
-          />
+            <TextInput
+              style={styles.TextInput}
+              placeholder="password"
+              onChangeText={password => this.setState({password})}
+            />
 
-          <Button
-            style={styles.button}
-            title="Log in"
-            onPress={() => {
-              const {username, password} = this.state;
+            <Button
+              style={styles.button}
+              title="Log in"
+              onPress={() => {
+                const {username, password} = this.state;
 
-              getUser(username, password)
-                .then(res => {
-                  console.log(res);
+                getUser(username, password)
+                  .then(res => {
+                    console.log(res);
 
-                  if (res) {
-                    return this.props.navigation.navigate('HomePage', {
-                      username: username,
-                      password: password,
-                    });
-                  } else {
-                    Alert.alert('Username not found.Please sign up');
-                  }
-                })
-                .catch(err => {
-                  Alert.alert(err);
-                });
-            }}></Button>
+                    if (res) {
+                      return this.props.navigation.navigate('HomePage', {
+                        username: username,
+                        password: password,
+                      });
+                    } else {
+                      Alert.alert('Username not found.Please sign up');
+                    }
+                  })
+                  .catch(err => {
+                    Alert.alert(err);
+                  });
+              }}
+            />
 
-          <Button
-            style={styles.button}
-            title="Sign Up"
-            onPress={() => this.props.navigation.navigate('Home')}></Button>
-        </View>
-      </KeyboardAvoidingView>
+            <Button
+              style={styles.button}
+              title="Sign Up"
+              onPress={() => this.props.navigation.navigate('Home')}
+            />
+          </View>
+        </KeyboardAvoidingView>
+      </ImageBackground>
     );
   }
 }
@@ -83,6 +93,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: 40,
     paddingRight: 40,
+    // backgroundColor: '#DFE8FF',
   },
   header: {
     fontSize: 30,
@@ -99,5 +110,10 @@ const styles = StyleSheet.create({
 
   Button: {
     alignSelf: 'stretch',
+  },
+  imgBackground: {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
   },
 });

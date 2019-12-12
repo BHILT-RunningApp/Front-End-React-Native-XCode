@@ -87,10 +87,6 @@ export default class MyAccount extends Component {
             flexDirection: 'column',
             alignContent: 'center',
             alignItems: 'stretch',
-          }}
-          style={{
-            alignItems: 'center',
-            padding: 10,
           }}>
           <View style={styles.header}>
             <Text style={styles.boldText}> Saviar</Text>
@@ -101,11 +97,8 @@ export default class MyAccount extends Component {
             flex: 2,
             flexDirection: 'column',
             alignContent: 'center',
-          }}
-          style={{
-            alignItems: 'center',
-            padding: 20,
-          }}>
+          }}></View>
+         
           <View style={styles.user}>
             <Image source={pic} style={{width: 150, height: 150}} />
             <Text style={styles.welcomeuser}>

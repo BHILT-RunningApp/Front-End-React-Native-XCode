@@ -101,26 +101,16 @@ export default class Homepage extends Component {
       );
     } else {
       return (
-        <View
-          style={{
-            flex: 2,
-            justifyContent: 'center',
-            alignItems: 'center',
-
-          }}>
-          <View style={styles.header}>
-            <Text style={styles.boldText}> Savior</Text>
-          </View>
+        <View style={styles.homepage}>
           <View style={styles.welcome}>
             <Text style={styles.welcomeText}>
-              Welcome to Saviar {this.state.username.toUpperCase()},{'\n'} a
-              clean route through impure air!{'\n'}
-              You have set Your start point to "Manchester Federation house".
-              Please, select on the below map were you would like to go
+              Welcome to Saviar {this.state.username.toUpperCase()}, a clean
+              route through impure air!{'\n'}
+              {'\n'}
+              Please, tab on a point, on the map below to select the end point
+              for your route. Then, click "Find best route"
             </Text>
-
           </View>
-          <View style={styles.welcome}></View>
           <View style={styles.page}>
             <View style={styles.container}>
               <MapboxGL.MapView onPress={this.mapPressed} style={styles.map}>
@@ -157,16 +147,12 @@ export default class Homepage extends Component {
 }
 
 const styles = StyleSheet.create({
-  // header: {
-  //   fontWeight: "bold",
-  //   color: "#000"
-  // },
-  boldText: {
-    fontFamily: 'Lobster-Regular',
-    // fontWeight: 'bold',
-    fontSize: 46,
-    alignSelf: 'center',
-    color: '#24416b',
+  homepage: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 30,
+    paddingRight: 20,
   },
   loading: {
     justifyContent: 'center',
@@ -177,10 +163,11 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: 20,
-    paddingLeft: 20,
+    textAlign: 'center',
+    padding: 20,
     color: '#24354f',
+    fontFamily: 'NotoSantsTC-Black',
+    fontSize: 12,
   },
   map: {
     flex: 1,

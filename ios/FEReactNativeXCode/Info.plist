@@ -56,7 +56,16 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lobster-Regular.ttf</string>
-		<string>Lobster-Regular.ttf</string>
+		<string>Bitter-Bold.ttf</string>
+		<string>Bitter-Italic.ttf</string>
+		<string>Bitter-Regular.ttf</string>
+		<string>NotoSansTC-Black.otf</string>
+		<string>NotoSansTC-Bold.otf</string>
+		<string>NotoSansTC-Light.otf</string>
+		<string>NotoSansTC-Medium.otf</string>
+		<string>NotoSansTC-Regular.otf</string>
+		<string>NotoSansTC-Thin.otf</string>
+		<string>NotoSansTC-Black.ttf</string>
 	</array>
 </dict>
 </plist>
