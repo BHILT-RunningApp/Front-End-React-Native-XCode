@@ -60,18 +60,18 @@ export default class Login extends React.Component {
                   .then(res => {
                     console.log(res);
 
-                    if (res) {
-                      return this.props.navigation.navigate('HomePage', {
-                        username: username,
-                        password: password,
-                      });
-                    } else {
-                      Alert.alert('Username not found.Please sign up');
-                    }
-                  })
-                  .catch(err => {
-                    Alert.alert(err);
+                                  //   if (res) {
+                  this.props.navigation.navigate('Homepage', {
+                    username,
+                    password,
                   });
+                  //   } else {
+                  //     Alert.alert('Username not found. Please sign up');
+                  //   }
+                })
+                .catch(err => {
+                  Alert.alert(err);
+                });   
               }}>
               <Text style={styles.textbutton}>Sign in</Text>
             </TouchableOpacity>
@@ -81,7 +81,7 @@ export default class Login extends React.Component {
               style={styles.button}
               title="Sign Up"
               color="#11A0E2"
-              onPress={() => this.props.navigation.navigate('Home')}>
+              onPress={() => this.props.navigation.navigate('SignUpPage')}>
               <Text style={styles.textbutton}>Sign up</Text>
             </TouchableOpacity>
           </View>

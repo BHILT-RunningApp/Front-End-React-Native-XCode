@@ -6,6 +6,7 @@ import {
   Button,
   TextInput,
   Dimensions,
+  Alert,
 } from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 import LogoTitle from './LogoTitle';
@@ -15,6 +16,8 @@ import MyAccount from './account';
 // import {createAppContainer} from 'react-navigation';
 // import {createStackNavigator} from 'react-navigation-stack';
 
+import Geolocation from 'react-native-geolocation-service';
+
 MapboxGL.setAccessToken(
   'pk.eyJ1IjoiaGFycnlwZnJ5IiwiYSI6ImNrM3EwYTVmYjA4Mzgzbm1vd2h0NjRobDgifQ.ZrK9wTTyKg6YpwI2KGC9bQ',
 );
@@ -23,7 +26,6 @@ MapboxGL.setAccessToken(
 
 export default class Homepage extends Component {
   static navigationOptions = ({navigation}) => {
-    const test = this.props;
     return {
       headerTitle: <LogoTitle />,
       headerRight: (
@@ -69,12 +71,14 @@ export default class Homepage extends Component {
         lng: -2.236825,
       },
       zoom: 14,
-      endCoordinates: [-2.2392781722504367, 53.48492529435421],
       markerDropped: false,
+      startCoordinates: [],
+      endCoordinates: [],
     };
   }
 
   componentDidMount() {
+    this.findCoordinates();
     this.props.navigation.setParams({
       LoginPage: () => this.props.navigation.navigate('LoginPage'),
       Map: () => this.props.navigation.navigate('Map'),
@@ -103,15 +107,39 @@ export default class Homepage extends Component {
       });
   }
 
+  findCoordinates = () => {
+    // console.log('Find coordinates running');
+    Geolocation.getCurrentPosition(
+      location => {
+        console.log(location.coords.latitude, location.coords.longitude);
+        this.setState({
+          startCoordinates: [
+            location.coords.latitude,
+            location.coords.longitude,
+          ],
+        });
+      },
+      error => {
+        console.log(error.code, error.message);
+      },
+      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+    );
+  };
+
   mapPressed = e => {
-    console.log(e.geometry.coordinates);
+    // console.log(e.geometry.coordinates);
     this.setState({
-      endCoordinates: e.geometry.coordinates,
+      endCoordinates: [e.geometry.coordinates[1], e.geometry.coordinates[0]],
       markerDropped: true,
     });
   };
 
   render() {
+    // {
+    //   this.state.startCoordinates === null && this.findCoordinates();
+    // }
+    const username = this.props.navigation.getParam('username');
+    // console.log('PROPS =>', this.props.navigation.getParam('username'));
     if (this.state.isLoading) {
       return (
         <View>
@@ -122,8 +150,16 @@ export default class Homepage extends Component {
       return (
         <View style={styles.homepage}>
           <View style={styles.welcome}>
+          <Text style={styles.welcomeText}>
+                Welcome to Saviar
+                {username ? (
+                  <Text> {username}</Text>
+                ) : (
+                  <Text> - Please log in</Text>
+                )}
+              </Text>
             <Text style={styles.welcomeText}>
-              Welcome to Saviar {this.state.username.toUpperCase()}, a clean
+              A clean
               route through impure air!{'\n'}
               {'\n'}
               Please, tab on a point, on the map below to select the end point
@@ -137,8 +173,8 @@ export default class Homepage extends Component {
                 <MapboxGL.Camera
                   defaultSettings={{
                     centerCoordinate: [
-                      this.state.defaultCenter.lng,
-                      this.state.defaultCenter.lat,
+                      this.state.startCoordinates[1],
+                      this.state.startCoordinates[0],
                     ],
                     zoomLevel: this.state.zoom,
                   }}
@@ -146,7 +182,10 @@ export default class Homepage extends Component {
                 {this.state.markerDropped && (
                   <MapboxGL.PointAnnotation
                     id={'1'}
-                    coordinate={this.state.endCoordinates}
+                    coordinate={[
+                      this.state.endCoordinates[1],
+                      this.state.endCoordinates[0],
+                    ]}
                   />
                 )}
               </MapboxGL.MapView>
@@ -154,7 +193,14 @@ export default class Homepage extends Component {
                 title="Create Route"
                 color="#11A0E2"
                 onPress={() => {
-                  this.props.navigation.navigate('Map');
+                  if (!this.state.markerDropped) {
+                    Alert.alert('Please drop pin');
+                  } else {
+                    this.props.navigation.navigate('Map', {
+                      endCoordinates: this.state.endCoordinates,
+                      startCoordinates: this.state.startCoordinates,
+                    });
+                  }
                 }}
               />
             </View>

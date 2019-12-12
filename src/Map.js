@@ -18,6 +18,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import {makeAvoidString} from '../utils/utils';
+
 import {getRoute, getPollutionData} from '../api/api';
 import PollutionPointCard from './pp-card';
 
@@ -79,36 +81,25 @@ class Map extends Component {
       lat: 53.479915,
       lng: -2.236825,
     },
-    markers: [[-2, 53]],
-    zoom: 12,
-    startCoordinates: [53.457915, -2.226825],
-    endCoordinates: [53.487144, -2.248454],
-    pollutionData: [
-      {
-        pp_coordinates: {
-          lat: 53.481471,
-          long: -2.242734,
+    markers: {
+      type: 'FeatureCollection',
+      features: [
+        {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: [],
+          },
         },
-        am: {
-          pollutants: {
-            no2: 86.44,
-            pm10: 43.33,
-            so2: 0.44,
-            o3: 2.59,
-            pm25: 25.3,
-          },
-          top_corner: {
-            lat: 53.458971,
-            long: -2.250234,
-          },
-          bottom_corner: {
-            lat: 53.503971,
-            long: -2.235234,
-          },
-          aqi: 3,
-        },
-      },
-    ],
+      ],
+    },
+    zoom: 14,
+    // startCoordinates: [53.457915, -2.226825],
+    // endCoordinates: [53.487144, -2.248454],
+    // startCoordinates: [],
+    // endCoordinates: [],
+    pollutionData: [],
     //NOT REQUIRED CURRENTLY
     directions: [],
     rectangle: [
@@ -133,20 +124,31 @@ class Map extends Component {
       data.response.route[0].leg[0].maneuver.forEach(point => {
         markerArr.push([point.position.longitude, point.position.latitude]);
       });
-      this.setState({markers: markerArr});
+      this.setState({
+        markers: {
+          type: 'FeatureCollection',
+          features: [
+            {
+              type: 'Feature',
+              properties: {},
+              geometry: {type: 'LineString', coordinates: markerArr},
+            },
+          ],
+        },
+      });
     });
   };
 
   fetchPollutionData = () => {
     getPollutionData().then(({data: {pollutionPoints}}) => {
       this.setState({pollutionData: pollutionPoints});
+      this.fetchRoute();
     });
   };
 
   showPollutionData = () => {
     const TOD = 'am';
     return this.state.pollutionData.map((point, index) => {
-      // console.log(point);
       return (
         <MapboxGL.PointAnnotation
           key={index}
@@ -166,12 +168,44 @@ class Map extends Component {
   };
 
   componentDidMount() {
+    console.log('MOUNT PD', this.state.pollutionData);
+
     MapboxGL.setTelemetryEnabled(false);
-    this.fetchRoute(
-      [this.props.latitude, this.props.longitude],
-      this.state.endCoordinates,
-    );
-    this.fetchPollutionData();
+    // this.fetchPollutionDat
+
+    getPollutionData().then(({data: {pollutionPoints}}) => {
+      this.setState({pollutionData: pollutionPoints}, () => {
+        this.fetchRoute(
+          this.props.navigation.getParam('startCoordinates'),
+          this.props.navigation.getParam('endCoordinates'),
+          makeAvoidString(this.state.pollutionData),
+        );
+      });
+      // this.setState({pollutionData: pollutionPoints}, () => {
+      //   this.fetchRoute(
+      //     this.props.navigation.getParam('startCoordinates'),
+      //     this.props.navigation.getParam('endCoordinates'),
+      //     makeAvoidString(this.state.pollutionData),
+      //   );
+      // });
+    });
+
+    // this.fetchRoute(
+    //   this.props.navigation.getParam('startCoordinates'),
+    //   this.props.navigation.getParam('endCoordinates'),
+    //   makeAvoidString(this.state.pollutionData),
+    // );
+  }
+
+  componentDidUpdate(prevprops, prevstate) {
+    // console.log('MARKERS', this.state.markers);
+    // if (prevstate.markers.values() !== this.state.markers.values()) {
+    //   this.fetchRoute(
+    //     this.props.navigation.getParam('startCoordinates'),
+    //     this.props.navigation.getParam('endCoordinates'),
+    //     makeAvoidString(this.state.pollutionData),
+    //   );
+    // }
   }
 
   //   render() {
@@ -179,8 +213,10 @@ class Map extends Component {
   //   }
 
   render() {
-    // console.log('PP => ', this.state.pollutionData);
-    console.log(this.props.latitude);
+    console.log(
+      'End Coords => ',
+      this.props.navigation.getParam('endCoordinates'),
+    );
     return (
       <View style={styles.page}>
         <View style={styles.container}>
@@ -195,22 +231,31 @@ class Map extends Component {
                 zoomLevel: this.state.zoom,
               }}
             />
-            {this.state.markers.map((marker, index) => {
-              return (
-                <MapboxGL.PointAnnotation
-                  key={index}
-                  id={String(index)}
-                  coordinate={[marker[0], marker[1]]}
-                  title={''}>
-                  <View style={mapStyle.annotationContainer}>
-                    <View style={mapStyle.annotationFill} />
-                  </View>
-                  <MapboxGL.Callout
-                    title="no me toques los huevos"
-                    // style={mapStyle.annotationFill}
-                  />
-                </MapboxGL.PointAnnotation>
-              );
+
+            {/* {this.state.markers.features[0].geometry.coordinates.map(
+              (marker, index) => {
+                return (
+                  <MapboxGL.PointAnnotation
+                    key={index}
+                    id={String(index)}
+                    coordinate={[marker[0], marker[1]]}
+                    title={''}>
+                    <View style={mapStyle.annotationContainer}>
+                      <View style={mapStyle.annotationFill} />
+                    </View>
+                  </MapboxGL.PointAnnotation>
+                );
+              },
+            )} */}
+            <MapboxGL.PointAnnotation
+              id={'End Point'}
+              coordinate={[
+                this.props.navigation.getParam('endCoordinates')[1],
+                this.props.navigation.getParam('endCoordinates')[0],
+              ]}
+            />
+            {this.state.pollutionData.map(point => {
+              console.log('PP =>', point.am.top_corner.lat);
             })}
             {this.showPollutionData()}
             <MapboxGL.ShapeSource
@@ -243,6 +288,17 @@ class Map extends Component {
                 }}
               />
             </MapboxGL.ShapeSource>
+            {/* <MapboxGL.ShapeSource id="route-shape" shape={this.state.markers}>
+              <MapboxGL.LineLayer
+                id="route-line"
+                style={{
+                  lineColor: 'red',
+                  lineWidth: 5,
+                  lineOpacity: 0.5,
+                  lineJoin: 'round',
+                }}
+              />
+            </MapboxGL.ShapeSource> */}
           </MapboxGL.MapView>
         </View>
       </View>

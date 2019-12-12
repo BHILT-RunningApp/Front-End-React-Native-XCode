@@ -1,175 +1,127 @@
 import React from 'react';
-import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity, AsyncStorage, Button, Alert} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  KeyboardAvoidingView,
+  TouchableOpacity,
+  AsyncStorage,
+  Button,
+  Alert,
+} from 'react-native';
 import axios from 'axios';
 
+export default class SignUpPage extends React.Component {
+  postUser = async (username, email, password, currentLocation) => {
+    const url = 'https://project-bhilt.appspot.com/api';
 
+    const end_location = {
+      lat: 0,
+      long: 0,
+    };
 
+    const {data} = await axios.post(`${url}/users`, {
+      username: username,
+      email: email,
+      password: password,
+      current_location: currentLocation,
+      end_location: end_location,
+    });
+    return data;
+  };
 
+  state = {
+    username: '',
+    email: '',
+    password: '',
+    currentlocation: '53.4860211, -2.2397307',
+  };
 
+  signUp = () => {
+    const {username, email, password, currentLocation} = this.state;
 
+    this.postUser(username, email, password, currentLocation)
+      .then(res => {
+        Alert.alert('Account created');
+        this.props.navigation.navigate('Homepage');
+      })
+      .catch(error => {
+        Alert.alert('User already exist');
+      });
+  };
 
+  render() {
+    const {username, email, password, currentLocation} = this.state;
 
-export default class SignUpPage extends React.Component{
-    
+    return (
+      <KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
+        <View style={styles.container}>
+          <Text styles={styles.header} />
 
-     postUser = async (userName, email, passWord, currentLocation) => {
+          <TextInput
+            style={styles.TextInput}
+            placeholder="username"
+            onChangeText={username => this.setState({username})}
+          />
 
-        const url = 'https://project-bhilt.appspot.com/api';
-       
+          <TextInput
+            style={styles.TextInput}
+            placeholder="email"
+            onChangeText={email => this.setState({email})}
+          />
 
-        
-        const end_location = {
-            lat: 0,
-             long: 0};
-    
-       
-            const { status} = await axios.post(`${url}/users`, {
-                username: userName,
-                email: email,
-                password: passWord,
-                current_location: currentLocation,
-                end_location:end_location
-             }
-            )
-            
+          <TextInput
+            style={styles.TextInput}
+            placeholder="password"
+            onChangeText={password => this.setState({password})}
+          />
 
-           return status
-       
-            }
-    
+          <Button
+            style={styles.button}
+            title="Create Account"
+            onPress={() =>
+              this.signUp(username, email, password, currentLocation)
+            }></Button>
 
-   
-
- 
-
-       state = {
-       userName: '',
-       email:'',
-       passWord: '',
-       currentLocation:'53.4860211, -2.2397307'
-       }
-
-
-
-       signUp = () => {
-           
-        const {userName, email, passWord, currentLocation} = this.state;
-        
-        
-        this.postUser(userName, email, passWord, currentLocation).then((res)=>
-          { 
-          
-            
-               if(res === 201){
-                Alert.alert("You are now a new user, please go back to log in :)")       
-              
-            }
-            
-        }
-        ).catch(err=> {Alert.alert(err)})
-       }
-   
-
-
-
-   
-     
-
-
-    render() {
-        const {userName, email, passWord, currentLocation} = this.state
-       
-
-        return (
-            <KeyboardAvoidingView behavior='padding' style = {styles.wrapper}>
-
-                <View style = {styles.container}>
-
-
-                    <Text styles= {styles.header}/>
-
-                        <TextInput style = {styles.TextInput} placeholder= 'username'
-                        onChangeText = {(userName) => this.setState({userName})}/>
-
-
-                        <TextInput style = {styles.TextInput} placeholder= 'email'
-                        onChangeText = {(email) => this.setState({email})}/>
-
-
-
-                        <TextInput
-                        style = {styles.TextInput} placeholder= 'password'
-                        onChangeText = {(passWord) => this.setState({passWord})}
-
-                        />
-
-                        <Button style = {styles.btn}
-                                title="Sign Up"
-                                onPress={() => this.signUp(userName, email, passWord, currentLocation)}>
-                     </Button>
-
-              
-
-
-                    <Button
-                                style = {styles.btn}
-                                title="Log in"
-                                onPress={() => this.props.navigation.navigate('Home')}>
-                     </Button>
-
-                   
-                </View>
-
-                
-
-            </KeyboardAvoidingView>
-        )
-    }
-
-    
-
+          {/* <Button
+            style={styles.btn}
+            title="Log in"
+            onPress={() => this.props.navigation.navigate('Home')}></Button> */}
+        </View>
+      </KeyboardAvoidingView>
+    );
+  }
 }
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingLeft: 40,
+    paddingRight: 40,
+  },
+  header: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 60,
+  },
+  TextInput: {
+    marginBottom: 20,
+    padding: 20,
+    alignSelf: 'stretch',
+    backgroundColor: '#A4A4A4',
+  },
 
-    wrapper:{
-        flex:1,
-    },
-    container:{
-        flex:1,
-        alignItems :'center',
-        justifyContent: 'center',
-        paddingLeft:40,
-        paddingRight: 40,
-
-
-
-
-        
-    },
-    header:{
-        fontSize: 30,
-        fontWeight: 'bold',
-        marginBottom: 60,
-
-
-
-    },
-    TextInput:{
-        marginBottom: 20,
-        padding: 20,
-        alignSelf: 'stretch'
-    },
-
-    Button:{
-        alignSelf:'stretch'
-    }
-
-
-
-
-
-})
-
-
-
-
+  button: {
+    alignSelf: 'stretch',
+    // border: '1px',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 4,
+    backgroundColor: '#A4A4A4',
+  },
+});
