@@ -25,11 +25,20 @@ export default class Homepage extends Component {
     return {
       headerTitle: <LogoTitle />,
       headerRight: () => (
-        <Button
-          color="#2196F3"
-          title="Log in"
-          onPress={navigation.getParam('LoginPage')}
-        />
+        (
+          <Button
+            color="#2196F3"
+            title="Log in"
+            onPress={navigation.getParam('LoginPage')}
+          />
+        ),
+        (
+          <Button
+            color="#2196F3"
+            title="Log in"
+            onPress={navigation.getParam('LoginPage')}
+          />
+        )
       ),
       headerStyle: {
         backgroundColor: '#2196F3',
@@ -174,7 +183,7 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
     height: 100,
-    width: Dimensions.get('window').width,
+    width: Dimensions.get('window').width - 50,
     padding: 0,
   },
 
