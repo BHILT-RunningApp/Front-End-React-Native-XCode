@@ -1,8 +1,10 @@
+/* eslint-disable react/jsx-no-duplicate-props */
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Button, TextInput, Image} from 'react-native';
 // import ProfilePics from './profilepics';
 
-import 'react-native-gesture-handler';
+// import 'react-native-gesture-handler';
 
 export default class MyAccount extends Component {
   constructor(props) {
@@ -16,7 +18,7 @@ export default class MyAccount extends Component {
       updateUser: false,
       newpassword: '',
       updatePassword: false,
-      profilePic: require('../pics/blonde.jpeg'),
+      profilePic: require('../assets/pics/blonde.jpeg'),
     };
   }
 
@@ -78,7 +80,7 @@ export default class MyAccount extends Component {
 
   render() {
     const {updateUser, username, updatePassword} = this.state;
-    const pic = require('../assets/picsblonde.jpeg');
+    const pic = require('../assets/pics/blonde.jpeg');
     return (
       <View>
         <View
@@ -87,6 +89,10 @@ export default class MyAccount extends Component {
             flexDirection: 'column',
             alignContent: 'center',
             alignItems: 'stretch',
+          }}
+          style={{
+            alignItems: 'center',
+            padding: 10,
           }}>
           <View style={styles.header}>
             <Text style={styles.boldText}> Saviar</Text>
@@ -97,11 +103,15 @@ export default class MyAccount extends Component {
             flex: 2,
             flexDirection: 'column',
             alignContent: 'center',
+          }}
+          style={{
+            alignItems: 'center',
+            padding: 20,
           }}>
           <View style={styles.user}>
             <Image source={pic} style={{width: 150, height: 150}} />
             <Text style={styles.welcomeuser}>
-              Hi {username.toUpperCase()}.{'\n'} What would you plike to do
+              Hi {username.toUpperCase()}.{'\n'} What would you like to do
               today?
             </Text>
           </View>
@@ -148,16 +158,12 @@ export default class MyAccount extends Component {
             ) : null}
           </View>
           {/* <View style={styles.profilepic}>
-            <Button
-              title="Update profile picture"
-              onPress={() => this.props.navigation.navigate("ProfilePics")}
-              //<ProfilePics updatePic={this.updatePic}
-            />
-          </View>
-          
-          can add pics component but need to add navigation
-          
-          */}
+          <Button
+            title="Update profile picture"
+            onPress={() => this.props.navigation.navigate("ProfilePics")}
+            //<ProfilePics updatePic={this.updatePic}
+          />
+        </View> */}
         </View>
       </View>
     );

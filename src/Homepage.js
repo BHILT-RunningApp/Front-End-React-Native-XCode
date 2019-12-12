@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 import LogoTitle from './LogoTitle';
+// import Map from './Map';
+import MyAccount from './account';
 
 // import {createAppContainer} from 'react-navigation';
 // import {createStackNavigator} from 'react-navigation-stack';
@@ -24,21 +26,25 @@ export default class Homepage extends Component {
     const test = this.props;
     return {
       headerTitle: <LogoTitle />,
-      headerRight: () => (
-        (
+      headerRight: (
+        <>
           <Button
             color="#2196F3"
             title="Log in"
             onPress={navigation.getParam('LoginPage')}
           />
-        ),
-        (
+
           <Button
             color="#2196F3"
-            title="Log in"
-            onPress={navigation.getParam('LoginPage')}
+            title="Map"
+            onPress={navigation.getParam('Map')}
           />
-        )
+          <Button
+            color="#2196F3"
+            title="MyAccount"
+            onPress={navigation.getParam('MyAccount')}
+          />
+        </>
       ),
       headerStyle: {
         backgroundColor: '#2196F3',
@@ -71,6 +77,8 @@ export default class Homepage extends Component {
   componentDidMount() {
     this.props.navigation.setParams({
       LoginPage: () => this.props.navigation.navigate('LoginPage'),
+      Map: () => this.props.navigation.navigate('Map'),
+      MyAccount: () => this.props.navigation.navigate('MyAccount'),
     });
     return fetch('https://project-bhilt.appspot.com/api/users')
       .then(response => response.json())

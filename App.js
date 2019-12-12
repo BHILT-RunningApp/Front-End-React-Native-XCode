@@ -38,9 +38,10 @@ import Geolocation from 'react-native-geolocation-service';
 import Map from './src/Map';
 import Homepage from './src/Homepage';
 import LoginPage from './src/LoginPage';
+import MyAccount from './src/account';
 
 const appStackNavigator = createStackNavigator(
-  {Homepage, Map, LoginPage},
+  {Homepage, Map, LoginPage, MyAccount},
   {initialRouteName: 'Homepage'},
 );
 
