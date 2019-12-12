@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
+import LogoTitle from './LogoTitle';
 
 // import {createAppContainer} from 'react-navigation';
 // import {createStackNavigator} from 'react-navigation-stack';
@@ -22,9 +23,10 @@ export default class Homepage extends Component {
   static navigationOptions = ({navigation}) => {
     const test = this.props;
     return {
+      headerTitle: <LogoTitle />,
       headerRight: () => (
         <Button
-          color="white"
+          color="#2196F3"
           title="Log in"
           onPress={navigation.getParam('LoginPage')}
         />
@@ -133,7 +135,7 @@ export default class Homepage extends Component {
               </MapboxGL.MapView>
               <Button
                 title="Create Route"
-                color="white"
+                color="#11A0E2"
                 onPress={() => {
                   this.props.navigation.navigate('Map');
                 }}

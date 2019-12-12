@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Button, TextInput, Image} from 'react-native';
-import ProfilePics from './profilepics';
+// import ProfilePics from './profilepics';
 
 import 'react-native-gesture-handler';
 
@@ -78,7 +78,7 @@ export default class MyAccount extends Component {
 
   render() {
     const {updateUser, username, updatePassword} = this.state;
-    const pic = require('../pics/blonde.jpeg');
+    const pic = require('../assets/picsblonde.jpeg');
     return (
       <View>
         <View
@@ -97,8 +97,7 @@ export default class MyAccount extends Component {
             flex: 2,
             flexDirection: 'column',
             alignContent: 'center',
-          }}></View>
-         
+          }}>
           <View style={styles.user}>
             <Image source={pic} style={{width: 150, height: 150}} />
             <Text style={styles.welcomeuser}>
